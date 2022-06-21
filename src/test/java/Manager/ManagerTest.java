@@ -15,7 +15,7 @@ class ManagerTest {
     Manager manager = new Manager(repo);
 
     @Test
-    void addTwoProdacts() {
+    void addTwoProducts() {
         manager.add(book1);
         manager.add(smartphone1);
 

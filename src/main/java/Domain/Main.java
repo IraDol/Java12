@@ -10,8 +10,7 @@ public class Main {
         Manager manager = new Manager(repo);
 
 
-//        Product book1 = new Book("FirstAuthor", "First", 111);
-//        Product book2 = new Book("SecondAuthor", "Second", 222);
+//       Product book2 = new Book("SecondAuthor", "Second", 222);
 //        Product smartphone1 = new Smartphone("FirstProducer", "FirstPhone", 333);
 //        Product smartphone2 = new Smartphone("SecondProducer", "SecondPhone", 444);
 
@@ -19,6 +18,12 @@ public class Main {
 //
 //        repo.save();
         // Product[] result = repo.save();
+//        Product book1 = new Book("FirstAuthor", "First", 111, 1000);
+//        Product book2 = new Book("SecondAuthor", "Second", 222, 2000);
+//       // manager.findById(222);
+
+        repo.removeById(222);
+        System.out.println("test");
 
     }
 }

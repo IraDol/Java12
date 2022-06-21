@@ -1,14 +1,12 @@
 package Manager;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import Domain.Book;
 import Domain.Product;
 import Domain.Smartphone;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 class RepoTest {
     Product book1 = new Book("FirstAuthor", "First", 111, 1000);
@@ -18,23 +16,23 @@ class RepoTest {
     Repo repo = new Repo();
 
     @Test
-    void saveTwoProdacts() {
+    void saveTwoProducts() {
         repo.save(book1);
         repo.save(smartphone1);
 
         Product[] actual = repo.findAll();
         Product[] expected = {book1, smartphone1};
-        Assertions.assertArrayEquals(actual, expected);
+        assertArrayEquals(actual, expected);
     }
 
     @Test
-    void saveSameProdacts() {
+    void saveSameProducts() {
         repo.save(book1);
         repo.save(book1);
 
         Product[] actual = repo.findAll();
         Product[] expected = {book1, book1};
-        Assertions.assertArrayEquals(actual, expected);
+        assertArrayEquals(actual, expected);
     }
 
 
@@ -48,7 +46,7 @@ class RepoTest {
         repo.removeById(333);
         Product[] actual = repo.findAll();
         Product[] expected = {book1, book2, smartphone2};
-        Assertions.assertArrayEquals(actual, expected);
+        assertArrayEquals(actual, expected);
     }
 
     @Test
@@ -58,7 +56,7 @@ class RepoTest {
         repo.removeById(111);
         Product[] actual = repo.findAll();
         Product[] expected = {};
-        Assertions.assertArrayEquals(actual, expected);
+        assertArrayEquals(actual, expected);
     }
 
     @Test
@@ -73,7 +71,49 @@ class RepoTest {
 
         Product[] actual = repo.findAll();
         Product[] expected = {smartphone1, smartphone2};
-        Assertions.assertArrayEquals(actual, expected);
+        assertArrayEquals(actual, expected);
     }
+
+    @Test
+    void searchById() {
+        repo.save(book1);
+        repo.save(book2);
+        repo.save(smartphone2);
+
+        Product[] actual = repo.findById(111);
+        Product[] expected = {book1};
+        assertArrayEquals(actual, expected);
+
+    }
+
+    @Test
+    void removeByIdTwoProducts() {
+        repo.save(book1);
+        repo.save(smartphone1);
+        repo.save(book2);
+        repo.save(smartphone2);
+
+        repo.removeById(-222);
+
+        assertThrows(NegativeIdException.class, () -> {
+            repo.removeById(-222);
+        });
+
+    }
+    @Test
+    void removeByIdNormal() {
+        repo.save(book1);
+        repo.save(smartphone1);
+        repo.save(book2);
+        repo.save(smartphone2);
+
+        repo.removeById(222);
+
+        assertThrows(NegativeIdException.class, () -> {
+            repo.removeById(222);
+        });
+
+    }
+
 
 }

@@ -14,7 +14,8 @@ public class Manager {
     public Manager() {
     }
 
-    public void add(Product product) {
+    public void add(Product product)
+    {
         repo.save(product);
     }
 
@@ -43,5 +44,8 @@ public class Manager {
 
     }
 
-}
+    }
+
+
+
 
