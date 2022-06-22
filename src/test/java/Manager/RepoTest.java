@@ -5,6 +5,7 @@ import Domain.Product;
 import Domain.Smartphone;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +29,10 @@ class RepoTest {
     @Test
     void saveSameProducts() {
         repo.save(book1);
-        repo.save(book1);
 
-        Product[] actual = repo.findAll();
-        Product[] expected = {book1, book1};
-        assertArrayEquals(actual, expected);
+        assertThrows(NegativeExistId.class, () -> {
+            repo.save(book1);
+        });
     }
 
 
@@ -93,13 +93,14 @@ class RepoTest {
         repo.save(book2);
         repo.save(smartphone2);
 
-        repo.removeById(-222);
+        // repo.removeById(-222);
 
         assertThrows(NegativeIdException.class, () -> {
             repo.removeById(-222);
         });
 
     }
+
     @Test
     void removeByIdNormal() {
         repo.save(book1);

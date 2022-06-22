@@ -1,10 +1,10 @@
 package Manager;
 
-    public class NegativeIdException extends RuntimeException {
-        public NegativeIdException(String msg) {
-            super(msg);
-        }
-
+public class NegativeIdException extends RuntimeException {
+    public NegativeIdException(String msg) {
+        super(msg);
     }
+
+}
 
 

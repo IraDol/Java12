@@ -15,14 +15,10 @@ public class Repo {
 //    }
 
     public void save(Product product) {
-//        Product product = new Product();
-//        if (findById() == product.getId()) {
-//            throw new NegativeIdException("Такой ID уже существует");
-//        }
-
-        //Product[] result = new Product[0];
-        //  for (Product product1 : findAll())
-        //      if (product1.getId() == id)
+        for (Product product1 : findAll())
+            if (product1.getId() == product.getId()) {
+                throw new NegativeExistId("Такой ID уже существует");
+            }
         int lenght = products.length + 1;
         Product[] tmp = new Product[lenght];
         System.arraycopy(products, 0, tmp, 0, products.length);
